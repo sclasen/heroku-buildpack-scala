@@ -9,9 +9,9 @@ install_spark(){
   sparkTarball="${sparkVersion}".tar.gz
   if [ ! -f "${sparkDir}/bin/spark-shell" ] ; then 
     curl --location ${sparkUrl} --output $baseDir/${sparkTarball}
-    tar xfz $baseDir/${sparkTarball}
+    tar xvfz $baseDir/${sparkTarball} -C $baseDir
     echo $(ls $baseDir)
-    mv $baseDir/${sparkVersion} spark
+    mv $baseDir/${sparkVersion} $baseDir/spark
   fi
 }
 
