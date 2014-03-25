@@ -8,9 +8,9 @@ install_spark(){
   sparkVersion=spark-0.9.0-incubating
   sparkTarball="${sparkVersion}".tar.gz
   if [ ! -f "${sparkDir}/bin/spark-shell" ] ; then 
-    curl --location ${sparkUrl} --output ${sparkTarball}
-    tar xfz ${sparkTarball}
-    mv ${sparkVersion} spark
+    curl --location ${sparkUrl} --output $baseDir/${sparkTarball}
+    tar xfz $baseDir/${sparkTarball}
+    mv $baseDir/${sparkVersion} spark
   fi
 }
 
