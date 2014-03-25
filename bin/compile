@@ -37,6 +37,8 @@ javaVersion=$(detect_java_version ${BUILD_DIR})
 echo -n "-----> Installing OpenJDK ${javaVersion}..."
 install_java ${BUILD_DIR} ${javaVersion}
 jdk_overlay ${BUILD_DIR}
+install_spark ${BUILD_DIR}
+write_spark_env ${BUILD_DIR} ${ENV_DIR}
 echo "done"
 
 # home directory from perspective of SBT; we rename
