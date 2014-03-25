@@ -26,7 +26,7 @@ write_spark_env(){
       sparkEnv="$e=$(cat $env_dir/$e)\n$sparkEnv"
       :
     done
-    echo $sparkEnv > $basedir/spark/conf/spark-env.sh 
+    echo $sparkEnv > "${basedir}"/spark/conf/spark-env.sh 
   fi
 }
 
