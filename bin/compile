@@ -45,7 +45,7 @@ echo -n "-----> Installing Spark..."
 install_spark ${SPARK_DIR}
 echo "done"
 
-echo -n "----->Writing conf/spark-env.sh..."
+echo -n "-----> Writing conf/spark-env.sh..."
 write_spark_env ${SPARK_DIR} ${ENV_DIR}
 echo "done"
 
