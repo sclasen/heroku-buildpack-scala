@@ -10,7 +10,6 @@ install_spark(){
   if [ ! -f "${sparkDir}/bin/spark-shell" ] ; then 
     curl --location ${sparkUrl} --output $baseDir/${sparkTarball}
     tar xvfz $baseDir/${sparkTarball} -C $baseDir
-    echo $(ls $baseDir)
     mv $baseDir/${sparkVersion} $baseDir/spark
   fi
 }
@@ -20,17 +19,16 @@ write_spark_env(){
   envDir=$2
   whitelist_regex=${3:-''}
   blacklist_regex=${4:-'^(PATH|GIT_DIR|CPATH|CPPATH|LD_PRELOAD|LIBRARY_PATH|JAVA_OPTS)$'}
-  sparkEnv="#!/usr/bin/env bash"
+
   echo ${baseDir}
   echo ${envDir}
   if [ -d "$envDir" ]; then
+    $sparkEnv = "${baseDir}"/spark/conf/spark-env.sh
+    echo "#!/usr/bin/env bash" > $sparkEnv
     for e in $(ls $envDir); do
-      echo "$e" | grep -E "$whitelist_regex" | grep -qvE "$blacklist_regex" && sparkEnv="$e=$(cat $envDir/$e)\n$sparkEnv"
+      echo "$e" | grep -E "$whitelist_regex" | grep -qvE "$blacklist_regex" && echo "$e=$(cat $envDir/$e)" >> $sparkEnv
       :
     done
-    echo $(ls $baseDir)
-    echo $(ls $baseDir/spark)
-    echo $sparkEnv > "${baseDir}"/spark/conf/spark-env.sh 
   fi
 }
 
