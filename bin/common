@@ -25,7 +25,7 @@ write_spark_env(){
     echo "#!/usr/bin/env bash" > $sparkEnv
     echo -n "SPARK_JAVA_OPTS='" >> $sparkEnv
     for e in $(ls $envDir); do
-      echo "$e" | grep -E "$whitelist_regex" | grep -qvE "$blacklist_regex" && echo "-D$e=$(cat $envDir/$e)" >> $sparkEnv
+      echo "$e" | grep -E "$whitelist_regex" | grep -qvE "$blacklist_regex" && echo -n " -D$e=$(cat $envDir/$e)" >> $sparkEnv
       :
     done
     echo "'" >> $sparkEnv
