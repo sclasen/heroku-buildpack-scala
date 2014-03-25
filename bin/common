@@ -20,10 +20,11 @@ write_spark_env(){
   whitelist_regex=${2:-''}
   blacklist_regex=${3:-'^(PATH|GIT_DIR|CPATH|CPPATH|LD_PRELOAD|LIBRARY_PATH|JAVA_OPTS)$'}
   sparkEnv="#!/usr/bin/env bash"
+  echo ${baseDir}
+  echo ${envDir}
   if [ -d "$envDir" ]; then
     for e in $(ls $envDir); do
-      echo "$e" | grep -E "$whitelist_regex" | grep -qvE "$blacklist_regex" &&
-      sparkEnv="$e=$(cat $env_dir/$e)\n$sparkEnv"
+      echo "$e" | grep -E "$whitelist_regex" | grep -qvE "$blacklist_regex" && sparkEnv="$e=$(cat $envDir/$e)\n$sparkEnv"
       :
     done
     echo $sparkEnv > "${basedir}"/spark/conf/spark-env.sh 
