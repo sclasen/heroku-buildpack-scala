@@ -16,6 +16,7 @@ ENV_DIR=$3
 
 # Move app to a static build dir to keep paths the same between builds
 SPARK_DIR="/tmp/spark_build_dir"
+mkdir -p $SPARK_DIR
 BUILD_DIR="/tmp/scala_buildpack_build_dir"
 mv $APP_BUILD_DIR $BUILD_DIR
 
