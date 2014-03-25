@@ -23,7 +23,7 @@ write_spark_env(){
   if [ -d "$envDir" ]; then
     sparkEnv="${baseDir}"/spark/conf/spark-env.sh
     echo "#!/usr/bin/env bash" > $sparkEnv
-    echo -n "SPARK_JAVA_OPTS='"
+    echo -n "SPARK_JAVA_OPTS='" >> $sparkEnv
     for e in $(ls $envDir); do
       echo "$e" | grep -E "$whitelist_regex" | grep -qvE "$blacklist_regex" && echo "-D$e=$(cat $envDir/$e)" >> $sparkEnv
       :
@@ -31,7 +31,7 @@ write_spark_env(){
     echo "'" >> $sparkEnv
     echo -n "SPARK_CLASSPATH='" >> $sparkEnv
     echo -n $(cat $envDir/SPARK_CLASSPATH) >> $sparkEnv
-    echo "'"
+    echo "'" >> $sparkEnv
     chmod +x $sparkEnv
   fi
 }
