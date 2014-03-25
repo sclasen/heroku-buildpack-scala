@@ -15,6 +15,7 @@ CACHE_DIR=$2
 ENV_DIR=$3
 
 # Move app to a static build dir to keep paths the same between builds
+SPARK_DIR="/tmp/spark_build_dir"
 BUILD_DIR="/tmp/scala_buildpack_build_dir"
 mv $APP_BUILD_DIR $BUILD_DIR
 
@@ -40,11 +41,11 @@ jdk_overlay ${BUILD_DIR}
 echo "done"
 
 echo -n "-----> Installing Spark..."
-install_spark ${BUILD_DIR}
+install_spark ${SPARK_DIR}
 echo "done"
 
 echo -n "----->Writing conf/spark-env.sh..."
-write_spark_env ${BUILD_DIR} ${ENV_DIR}
+write_spark_env ${SPARK_DIR} ${ENV_DIR}
 echo "done"
 
 # home directory from perspective of SBT; we rename
@@ -169,5 +170,5 @@ fi
 rm -rf $BUILD_DIR/target/streams
 rm -rf $SBT_USER_HOME/.ivy2
 
-# Move compiled app back to where Heroku expects it
-mv $BUILD_DIR $APP_BUILD_DIR
+mv $BUILD_DIR $SPARK_DIR/spark/app
+mv $SPARK_DIR/spark $APP_BUILD_DIR
