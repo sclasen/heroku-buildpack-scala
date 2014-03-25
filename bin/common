@@ -23,7 +23,7 @@ write_spark_env(){
   echo ${baseDir}
   echo ${envDir}
   if [ -d "$envDir" ]; then
-    $sparkEnv = "${baseDir}"/spark/conf/spark-env.sh
+    $sparkEnv="${baseDir}"/spark/conf/spark-env.sh
     echo "#!/usr/bin/env bash" > $sparkEnv
     for e in $(ls $envDir); do
       echo "$e" | grep -E "$whitelist_regex" | grep -qvE "$blacklist_regex" && echo "$e=$(cat $envDir/$e)" >> $sparkEnv
