@@ -27,6 +27,7 @@ write_spark_env(){
       echo "$e" | grep -E "$whitelist_regex" | grep -qvE "$blacklist_regex" && echo "$e=$(cat $envDir/$e)" >> $sparkEnv
       :
     done
+    chmod +x $sparkEnv
   fi
 }
 
