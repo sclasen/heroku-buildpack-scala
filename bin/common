@@ -18,7 +18,7 @@ write_spark_env(){
   baseDir=$1
   envDir=$2
   whitelist_regex=${3:-''}
-  blacklist_regex=${4:-'^(PATH|GIT_DIR|CPATH|CPPATH|LD_PRELOAD|LIBRARY_PATH|JAVA_OPTS)$'}
+  blacklist_regex=${4:-'^(PATH|GIT_DIR|CPATH|CPPATH|LD_PRELOAD|LIBRARY_PATH|JAVA_OPTS|SBT_OPTS|REPO|BUILDPACK_URL)$'}
 
   if [ -d "$envDir" ]; then
     sparkEnv="${baseDir}"/spark/conf/spark-env.sh
