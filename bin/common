@@ -30,7 +30,7 @@ write_spark_env(){
     done
     echo "'" >> $sparkEnv
     echo -n "SPARK_CLASSPATH='" >> $sparkEnv
-    echo -n $(cat $envDir/SPARK_CLASPATH) >> $sparkEnv
+    echo -n $(cat $envDir/SPARK_CLASSPATH) >> $sparkEnv
     echo "'"
     chmod +x $sparkEnv
   fi
