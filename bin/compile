@@ -45,10 +45,6 @@ echo -n "-----> Installing Spark..."
 install_spark ${SPARK_DIR}
 echo "done"
 
-echo -n "-----> Writing conf/spark-env.sh..."
-write_spark_env ${SPARK_DIR} ${ENV_DIR}
-echo "done"
-
 # home directory from perspective of SBT; we rename
 # it because otherwise the project root and $HOME
 # are the same, and by default .sbt has a (different)
@@ -173,3 +169,13 @@ rm -rf $SBT_USER_HOME/.ivy2
 
 mv $BUILD_DIR $SPARK_DIR/spark/app
 mv $SPARK_DIR/spark $APP_BUILD_DIR
+
+# either
+# tar cfz app.tar.gz APP_BUILD_DIR && upload to s3://:cred@heroku-spark/slug-uuid/app.tar.gz
+# have a proxy that http://:cred@proxy/slug-uuid/app.tar.gz and gets the slug
+# then launch via mesos/marathon via spark-launcherjar that creates the spark context, which creates the spark context with the spark.executor.uri (endingin app.tar.gz), then reflects and passes context to App class
+# FIRST test by curling down then s3put to http://:cred@proxy/slug-uuid/app.tar.gz  and use that as both the uri for mesos, and the executor.uri
+
+# OR subclass the coarse executor and do 'cd app, bin/spark-class MyCoarseScheduler'
+
+
