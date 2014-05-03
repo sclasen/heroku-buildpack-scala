@@ -167,6 +167,7 @@ fi
 rm -rf $BUILD_DIR/target/streams
 rm -rf $SBT_USER_HOME/.ivy2
 
+cp $BUILD_DIR/Procfile $SPARK_DIR/spark
 mv $BUILD_DIR $SPARK_DIR/spark/app
 mv $SPARK_DIR/spark $APP_BUILD_DIR
 
