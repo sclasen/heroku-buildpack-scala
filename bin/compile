@@ -42,7 +42,11 @@ jdk_overlay ${BUILD_DIR}
 echo "done"
 
 echo -n "-----> Installing Spark..."
-install_spark ${SPARK_DIR}
+install_spark ${SPARK_DIR} ${CACHE_DIR}
+echo "done"
+
+echo -n "-----> Installing custom bin/spark-class..."
+install_spark_class ${SPARK_DIR}
 echo "done"
 
 # home directory from perspective of SBT; we rename
