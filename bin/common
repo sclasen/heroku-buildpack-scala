@@ -23,6 +23,14 @@ install_spark_class(){
   chmod +x $baseDir/spark/bin/spark-class
 }
 
+install_syslogged(){
+  baseDir=$1
+  url="https://s3.amazonaws.com/heroku-mesos/syslogged"
+  sparkDir="${baseDir}"/spark
+  curl  --silent --location ${url} --output $baseDir/spark/syslogged
+  chmod +x $baseDir/spark/syslogged
+}
+
 write_spark_env(){
   baseDir=$1
   envDir=$2

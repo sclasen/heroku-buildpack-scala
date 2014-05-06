@@ -49,6 +49,10 @@ echo -n "-----> Installing custom bin/spark-class..."
 install_spark_class ${SPARK_DIR}
 echo "done"
 
+echo -n "-----> Installing syslogged..."
+install_syslogged ${SPARK_DIR}
+echo "done"
+
 # home directory from perspective of SBT; we rename
 # it because otherwise the project root and $HOME
 # are the same, and by default .sbt has a (different)
