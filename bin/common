@@ -19,7 +19,8 @@ install_spark_class(){
   baseDir=$1
   sparkUrl="https://s3.amazonaws.com/heroku-mesos/spark-class"
   sparkDir="${baseDir}"/spark
-  curl --silent --location ${sparkUrl} --output $baseDir/spark/bin
+  curl  --silent --location ${sparkUrl} --output $baseDir/spark/bin/spark-class
+  chmod +x $baseDir/spark/bin/spark-class
 }
 
 write_spark_env(){
