@@ -31,6 +31,31 @@ install_syslogged(){
   chmod +x $baseDir/spark/syslogged
 }
 
+copy_log4j_props(){
+  baseDir=$1
+  buildDir=$2
+  echo -n "Copying log4j.properties to spark conf..."
+  if [ -f "$buildDir/src/main/resources/log4j.properties" ] ; then
+      cp $buildDir/src/main/resources/log4j.properties $baseDir/spark/conf/log4j.properties
+      echo "done."
+  else
+      echo "not found."
+  fi
+}
+
+copy_spark_env(){
+  baseDir=$1
+  buildDir=$2
+  echo -n "Copying spark-env.sh to spark conf..."
+  if [ -f "$buildDir/src/main/resources/spark-env.sh" ] ; then
+      cp $buildDir/src/main/resources/spark-env.sh $baseDir/spark/conf/spark-env.sh
+      echo "done."
+  else
+      echo '#!/usr/bin/env bash' > $baseDir/spark/conf/spark-env.sh
+      echo "not found."
+  fi
+}
+
 write_spark_env(){
   baseDir=$1
   envDir=$2

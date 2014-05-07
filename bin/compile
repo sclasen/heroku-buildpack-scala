@@ -53,6 +53,10 @@ echo -n "-----> Installing syslogged..."
 install_syslogged ${SPARK_DIR}
 echo "done"
 
+copy_log4j_props
+
+copy_spark_env
+
 # home directory from perspective of SBT; we rename
 # it because otherwise the project root and $HOME
 # are the same, and by default .sbt has a (different)
