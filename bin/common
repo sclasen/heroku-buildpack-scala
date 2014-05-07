@@ -34,7 +34,7 @@ install_syslogged(){
 copy_log4j_props(){
   baseDir=$1
   buildDir=$2
-  echo -n "Copying log4j.properties to spark conf..."
+  echo -n "----> Copying log4j.properties to spark conf..."
   if [ -f "$buildDir/src/main/resources/log4j.properties" ] ; then
       cp $buildDir/src/main/resources/log4j.properties $baseDir/spark/conf/log4j.properties
       echo "done."
@@ -46,7 +46,7 @@ copy_log4j_props(){
 copy_spark_env(){
   baseDir=$1
   buildDir=$2
-  echo -n "Copying spark-env.sh to spark conf..."
+  echo -n ----> "Copying spark-env.sh to spark conf..."
   if [ -f "$buildDir/src/main/resources/spark-env.sh" ] ; then
       cp $buildDir/src/main/resources/spark-env.sh $baseDir/spark/conf/spark-env.sh
       echo "done."
