@@ -4,9 +4,9 @@ install_spark(){
   baseDir=$1
   cacheDir=$2
   if [ ! -d "${baseDir}" ]; then echo "Invalid directory to install spark."; return 1 ; fi
-  sparkUrl="https://s3.amazonaws.com/heroku-mesos/spark-1.0.0.tgz"
+  sparkUrl="https://s3.amazonaws.com/heroku-mesos/spark-1.0.0-bin-hadoop2.tgz"
   sparkDir="${baseDir}"/spark
-  sparkVersion=spark-1.0.0
+  sparkVersion=spark-1.0.0-bin-hadoop2
   sparkTarball="${sparkVersion}".tgz
   if [ ! -f "$cacheDir/${sparkTarball}" ] ; then
     curl --silent --location ${sparkUrl} --output $cacheDir/${sparkTarball}
