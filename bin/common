@@ -13,6 +13,10 @@ install_spark(){
   fi
   tar xfz $cacheDir/${sparkTarball} -C $baseDir
   mv $baseDir/${sparkVersion} $baseDir/spark
+  rm $baseDir/spark/lib/datanucleus*
+  rm $baseDir/spark/lib/spark-examples-1.0.0-hadoop2.2.0.jar
+  rm -rf $baseDir/spark/examples
+
 }
 
 install_spark_class(){
